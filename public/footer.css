@@ -1,0 +1,35 @@
+
+#footer {
+    height: 150px;
+    width: 100vw;
+    background-color: rgb(237, 91, 38, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#footer img {
+    width: 150px;
+    height: 150px;
+    mix-blend-mode: multiply;
+}
+
+.footer_info {
+    font-size: 25px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 540;
+}
+
+.footer_left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact_us{
+    font-size: 20px;
+}

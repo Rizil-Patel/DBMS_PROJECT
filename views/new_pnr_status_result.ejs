@@ -1,0 +1,288 @@
+<!-- new_pnr_status_result.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PNR Status Result</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/footer.css" />
+
+    <!-- <link rel="stylesheet" href="/pnr.css" /> -->
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+  
+      body {
+        width: 100vw;
+        height: 100vh;
+        overflow-x: hidden;
+      }
+  
+      .train {
+        width: 100vw;
+        height: 100%;
+        background-color: #f0f0f0;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        margin-bottom: 10px;
+      }
+  
+      .train_info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        height: 100%;
+        width: 35%;
+        background-color: rgb(237, 91, 38, 0.2);
+        flex-direction: column;
+      }
+  
+      .from-to {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+      }
+  
+      .time-info {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: row;
+      }
+  
+      .departure {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+  
+      .passengerInfo {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+  
+      .pass_top_row {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 54px;
+        color: #676363;
+        font-weight: 700;
+        padding-left: 10px
+      }
+  
+      .pass_bottom_row {
+        width: 90%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 65px;
+        font-weight: 700;
+      }
+  
+      .passengerDetails {
+        width: 50%;
+        height: 100px;
+        margin-bottom: 20px;
+        background-color: #f0f0f0;
+        padding: 10px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: row;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        border: 1px solid #2e2c2b;
+      }
+  
+      .pnrModal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: auto;
+        width: 100vw;
+        gap: 40px;
+        overflow-x: hidden;
+      }
+  
+      .pnrDetails {
+        width: 100%;
+        height: 120px;
+        background-color: #9B2447;
+      }
+  
+      .pnr_input {
+        width: 100%;
+        height: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #9B2447;
+        margin-bottom: 100px;
+      }
+  
+      .pnr_input h3 {
+        color: #e9f0f0;
+        font-size: 30px;
+        font-family: 'Times New Roman', Times, serif;
+        margin-bottom: 30px;
+      }
+  
+      .pnrForm {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+  
+      .pnrForm input {
+        width: 65%;
+        height: 40px;
+        padding: 5px;
+        outline: none;
+      }
+  
+      .pnrForm button {
+        box-sizing: border-box;
+        width: 30%;
+        height: 39px;
+        border: 1px solid #ED5B25;
+        background-color: #ED5B25;
+        color: #e9f0f0;
+        font-size: 20px;
+      }
+  
+      .pnr_reference_link {
+        width: 40%;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+      }
+  
+      .pnr_reference_link a {
+        text-decoration: none;
+        color: #2e2c2b;
+        border: 1px solid #ed5b25;
+        padding: 10px;
+        background-color: #feebe6;
+        border-radius: 5px;
+        font-size: 17px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ... (your navigation) ... -->
+    <div class="pnr_input">
+      <h3 style="margin-top: 1rem;">PNR Status Check</h3>
+      <form style="margin-left: -30rem; margin-right: 10rem;" action="/new_pnr_status_result" method="post">
+        <div style="width: 300%; "  class=pnrForm>
+            <input style="height: 3rem;" type="number" name="pnrNo" id="pnrNo" placeholder="Enter PNR number">
+          <button style="height: 3rem;">Check PNR Status</button>
+        </div>
+      </form>
+      <div style="margin-bottom: 1rem;" class="pnr_reference_link">
+        <a href="/book_train1">Train Booking</a>
+        <a href="/run_status1">Train Running Status</a>
+      </div>
+    </div>
+
+    <h1 style="text-align: center; margin-top: -2rem; margin-bottom: 2rem;">PNR Status Result</h1>
+
+    <div id="pnrDetails">
+      <% if (results && results.length > 0) { %>
+  <% results.forEach(result => { %>
+
+        <div class="pnrDetails">
+          <div class="train">
+            <div class="train_info">
+              <h3><%= result.TRAINNAME %></h3>
+              <div class="from-to">
+                <p><strong>Departure:</strong> <%= result.DEPARTURE %></p>
+                <p><strong>Arrival:</strong> <%= result.ARRIVAL %></p>
+              </div>
+            </div>
+            <div class="time-info">
+              <div class="arrival">
+                <p style="font-size:30px; padding-top:20px;"><%= result.DEPARTURETIME %></p>
+                <!-- <p style="font-size:15px;">${pnrDetails.arrival_date}</p> -->
+              </div>
+              <span style="padding-top:30px;">------</span>
+              <p style="padding-top:30px;"><%= result.DURATION %> HRS</p>
+              <span style="padding-top:30px;">------</span>
+              <div class="departure">
+                <p style="font-size:30px; padding-top:20px;"> <%= result.ARRIVALTIME %></p>
+                <!-- <p style="font-size:15px;">${pnrDetails.departure_date}</p> -->
+              </div>
+            </div>
+          </div>
+        <div class="passengerInfo">
+          <div class="passengerDetails">
+            <div class="pass_top_row">
+              <p><strong>Booking Status</strong></p>
+              <p><strong>Current Status</strong></p>
+              <p><strong>Coach</strong></p>
+              <p><strong>Berth</strong></p>
+              <p><strong>Class</strong></p>
+              <p><strong>Seat No</strong></p><br>
+            </div>
+            <div class="pass_bottom_row">
+              <p><%= result.BOOKINGSTATUS %></p>
+              <p><%= result.CURRENTSTATUS %></p>
+              <p><%= result.COACH %></p>
+              <p><%= result.BERTH %></p>
+              <p><%= result.CLASS %></P> 
+              <p><%= result.SEATNO %></P> 
+            </div>
+          </div>
+        </div>
+        <%}); %>
+
+      <% } else { %>
+        <p>No results found for the given PNR.</p>
+      <% } %>
+      
+    </div>
+    <footer style="margin-top: 10rem;" id="footer">
+      <div class="footer_left">
+        <img src="/photos/yaatra.jpg" alt="">
+        <div class="footer_info">
+          <p>Book Train Tickets Quickly.</p>
+          <p>Enjoy free Cancellation.</p>
+        </div>
+      </div>
+      <div class="contact_us">
+        <p>Customer Care Number: +123456789</p>
+        <p>24x7 free service</p>
+      </div>
+      <div class="copyright">
+        <p>&copy; Yatra.com</p>
+        <p>All rights reserved by respective owners.</p>
+      </div>
+    </footer>
+  </body>
+</html>

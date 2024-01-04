@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/add_details.css" />
+    <style>
+        body{
+            background-color:  rgb(237, 91, 38, 0.2);
+        }
+        form{
+            margin-left: 20%;
+            display: flex;
+        }
+        img{
+            height: 2rem;
+            width: 2rem;
+            margin-top: 6rem;
+            margin-right: 1rem;
+            margin-left: 1rem;
+        }
+        h1{
+            margin-top: 5rem;
+            text-align: center;
+            font-family: cursive;
+            color: brown;
+        }
+        button:hover{
+            background-color: orangered;
+            color: white;
+        }
+    </style>
+  </head>
+  <body>
+
+    <h1>Confirm Your Booking With !!</h1>
+    <form action="/ticket_preview" method="post">
+      <label style="margin-top: 6.5rem; margin-right: 1rem;" for="from"> From</label> <br /><br />
+      <input type="text"    style="height: 2rem;
+      margin-top: 6rem; border-radius: 5px;" name="from" id="from" placeholder="Leaving from" />
+      <label style="margin-top: 6.5rem; margin-right: 1rem; margin-left: 1rem;" for="to">To</label> <br /><br />
+      <input type="text" style="height: 2rem;
+      margin-top: 6rem; border-radius: 5px;" name="to" id="to" placeholder="Going to" />
+      <label style="margin-left: 4rem; margin-top: 6.5rem; margin-right: 1rem;" for="security1">Security code</label>
+      <input type="number" style="height: 2rem;
+      margin-top: 6rem; border-radius: 5px;" name="security1" id="security1" />
+      <button  style="height: 2rem;
+      margin-top: 6rem; margin-left: 2rem; border-radius: 5px; width: 5rem;" type="submit">Proceed</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        a{
+            text-decoration: none;
+            text-align: center;
+            height: 2rem;
+            width: 4rem;
+            border: 1px solid black;
+            border-radius: 5px;
+            color: white;
+            background-color: #ED5B25 ;
+        }
+        input{
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profileContainer">
+        <span class="title"><i class="fas fa-user-circle" id="profileicon"></i><p>Profile</p></span>
+        <div class="userDetails">
+            <h4><label for="name"><strong>Name :</strong></label></h4>
+            <p><%= name%></p>
+            <h4><label for="Email"><strong>Email :</strong></label></h4>
+            <p><%= email%></p>
+            <h4><label for="number"><strong>Contact No. :</strong></label></h4>
+            <p><%= number%></p>
+        </div>
+    <a href="/" id="register-alt">Save</a>
+    </div>
+
+</body>
+
+</html>

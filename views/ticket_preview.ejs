@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Booking | Yatra.com</title>
+    <link rel="stylesheet" href="/ticket_preview.css">
+    <link rel="stylesheet" href="/ticket.css">
+
+
+</head>
+
+<body>
+    <div style="display: flex; flex-direction: column; height: 100%;">
+    <div class="ticketContainer">
+        <div class="trainDetails">
+            <p>Booking Details</p>
+            <div class="trainInfoContainer">
+                <div class="train_info">
+                    <h3><%= trainDetails[0].TRAINNAME %></h3>
+                    <div class="from-to">
+                        <!-- Adjust this part based on your train details -->
+                        <p>Departure: <%= trainDetails[0].SOURCESTATION %></p>
+                        <p>Arrival: <%= trainDetails[0].DESTINATIONSTATION %></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="time-info">
+                    <div class="departure">
+                        <p style="font-size:30px; padding-top:20px;"><%= trainDetails[0].STARTTIME %></p>
+                        <p style="font-size:15px;">20-12-2023</p>
+                    </div>
+                    <span style="padding-top:30px;">---------------------------</span>
+                    <p style="padding-top:30px;"><%= trainDetails[0].DURATION %> hours</p>
+                    <span style="padding-top:30px;">---------------------------</span>
+                    <div class="arrival">
+                        <p style="font-size:30px; padding-top:20px;"><%= trainDetails[0].ENDTIME %></p>
+                        <p style="font-size:15px;">20-12-2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="passengerDetails">
+            <p>Travellers Details</p>
+            <div class="passengerInfo">
+                <div class="passenger_details">
+                    <table class="passengerTable">
+                        <tr>
+                            <th>Passenger Name</th>
+                            <th>Status</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Berth</th>
+                            <th>Class</th>
+                        </tr>
+                        <% if(passengerDetails && passengerDetails.length > 0) { %>
+                            <% passengerDetails.forEach(passenger => { %>
+                                <tr>
+                                    <td><%= passenger.NAME %></td>
+                                    <td>Confirm</td> <!-- Assuming status is always Confirm for simplicity -->
+                                    <td><%= passenger.AGE %></td>
+                                    <td><%= passenger.GENDER %></td>
+                                    <td><%= passenger.BERTH %></td>
+                                    <td><%= passenger.COACH %></td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="6">No passenger details available</td>
+                            </tr>
+                        <% } %>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <button onclick="window.location.href='/confirm_pay';" class="confirm">Confirm & Pay</button>
+    </div>
+    <div  style="margin-left: 30%; margin-top: 3rem;" class="ticketContainer1">
+        <div class="titlebar1">
+            <img src="/photos/yaatra.jpg" alt="">
+            <p>Train Ticket</p>
+        </div>
+        <div class="ticket_details1">
+            <% if(passengerDetails && passengerDetails.length > 0) { %>
+                <% passengerDetails.forEach(passenger => { %>
+            <div class="left1">
+                <div class="name1">
+                    <p>Name: </p>
+                    <p><%= passenger.NAME %></p>
+                </div>
+                <div class="from1">
+                    <p>From: </p>
+                    <p> <%= trainDetails[0].SOURCESTATION %></p>
+                </div>
+                <div class="to1">
+                    <p>To: </p>
+                    <p><%= trainDetails[0].DESTINATIONSTATION %></p>
+                </div>
+                <div class="date1">
+                    <p>Date: </p>
+                    <p>20-12-2023</p>
+                </div>
+            </div>
+            <div class="right1">
+                <div class="train_no1">
+                    <p>Train: </p>
+                    <p><%= trainDetails[0].TRAINNAME %></p>
+                </div>
+                <div class="platform1">
+                    <p>Platform: </p>
+                    <p>5</p>
+                </div>
+                <div class="seat1">
+                    <p>Berth </p>
+                    <p><%= passenger.BERTH %></p>
+                </div>
+                <div class="dept_arr1">
+                    <div class="dept1">
+                        <p>Departure: </p>
+                        <p><%= trainDetails[0].STARTTIME %></p>
+                    </div>
+                    <div class="arr1">
+                        <p>Arrival: </p>
+                        <p><%= trainDetails[0].ENDTIME %></p>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="6">No passenger details available</td>
+                </tr>
+            <% } %>
+        </div>
+    </div>
+</div>
+   
+
+</body>
+<script>
+    const selectedTrainDetails = localStorage.getItem('selectedTrain');
+</script>
+
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Train | Yaatra.com</title>
+    <link rel="stylesheet" href="/footer.css" />
+
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow-x: hidden;
+      background-color: rgb(237, 91, 38, 0.2);
+    }
+
+    .Modal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: auto;
+      width: 100vw;
+      overflow-x: hidden;
+    }
+
+    .num_input {
+      width: 100%;
+      height: 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #9b2447;
+      margin-bottom: 60px;
+    }
+
+    .num_input h3 {
+      color: #e9f0f0;
+      font-size: 30px;
+      font-family: "Times New Roman", Times, serif;
+      margin-bottom: 30px;
+    }
+
+    .Form {
+      width: 60%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .Form input {
+      width: 65%;
+      height: 40px;
+      padding: 5px;
+      outline: none;
+    }
+
+    .Form button {
+      box-sizing: border-box;
+      width: 30%;
+      height: 39px;
+      border: 1px solid #ed5b25;
+      background-color: #ed5b25;
+      color: #e9f0f0;
+      font-size: 20px;
+    }
+
+    .reference_link {
+      width: 40%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 10px;
+    }
+
+    .reference_link a {
+      text-decoration: none;
+      color: #2e2c2b;
+      border: 1px solid #ed5b25;
+      padding: 10px;
+      background-color: #feebe6;
+      border-radius: 5px;
+      font-size: 17px;
+    }
+
+    .trainDetails {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .trainDetails p,
+    .passengerDetails p {
+      font-size: 20px;
+    }
+
+    .ticketContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .trainInfoContainer {
+      width: 70vw;
+      height: 160px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 30px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+    }
+
+    .train_info {
+      height: 60%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      padding: 30px;
+      margin-left: 10px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .train_info h3 {
+      font-size: 25px;
+    }
+
+    hr {
+      position: relative;
+      right: 0.5%;
+      width: 70vw;
+      color: #676363;
+      background-color: #676363;
+      height: 20px;
+    }
+
+    .from-to {
+      height: 100%;
+      width: 60%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      gap: 50px;
+      /* margin-left: 100px; */
+    }
+
+    .time-info {
+      width: 70%;
+      height: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: row;
+      padding-bottom: 25px;
+    }
+
+    .departure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .stationDetails {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .station {
+      width: 100px;
+      height: 50px;
+      background-color: #e9f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+    }
+  </style>
+  <body>
+    <!-- <div class="result-container">
+      <% if (trainResults) { %>
+      <h2>Train Details</h2>
+      <ul>
+        <% trainResults.forEach(train => { %>
+        <li>
+          <strong>Train Name:</strong> <%= train.TRAINNAME %><br />
+          <strong>Departure:</strong> <%= train.DEPARTURE %><br />
+          <strong>Arrival:</strong> <%= train.ARRIVAL %><br />
+          <strong>Departure Time:</strong> <%= train.DEPARTURE_TIME %><br />
+          <strong>Arrival Time:</strong> <%= train.ARRIVAL_TIME %><br />
+          <strong>DURATION:</strong> <%= train.DURATION %><br />
+          <strong>STOPA:</strong> <%= train.STOPA %><br />
+          <strong>STOPB:</strong> <%= train.STOPB %><br />
+          <strong>STOPC:</strong> <%= train.STOPC %><br />
+          Add more details as needed 
+        </li>
+        <% }); %>
+      </ul>
+      <% } else { %>
+      <p>No results found for the given train name or number.</p>
+      <% } %>
+    </div> -->
+
+    <div class="Modal">
+      <div class="num_input">
+        <h3>Train Details</h3>
+        <div class="Form">
+          <input type="number" placeholder="Train Number" id="TrainNo" />
+          <button>Find Live Status</button>
+        </div>
+        <div class="reference_link">
+          <a href="book_train.html">Train Booking</a>
+          <a href="pnr_status.html">Train Running Status</a>
+        </div>
+      </div>
+      <div class="ticketContainer">
+        <div class="trainDetails">
+          <% if (trainResults) { %>
+
+          <p>Train Details</p>
+          <% trainResults.forEach(train => { %>
+
+          <div class="trainInfoContainer">
+            <div class="train_info">
+              <h3><%= train.TRAINNAME %></h3>
+              <div class="from-to">
+                <p>Departure: <%= train.DEPARTURE %></p>
+                <p>Arrival: <%= train.ARRIVAL %></p>
+              </div>
+              <hr />
+              <div class="time-info">
+                <div class="departure">
+                  <p style="font-size: 30px; padding-top: 20px">
+                    <%= train.DEPARTURE_TIME %>
+                  </p>
+                </div>
+                <span style="padding-top: 30px"
+                  >---------------------------</span
+                >
+                <p style="padding-top: 30px"><%= train.DURATION %></p>
+                <span style="padding-top: 30px"
+                  >---------------------------</span
+                >
+                <div class="arrival">
+                  <p style="font-size: 30px; padding-top: 20px">
+                    <%= train.ARRIVAL_TIME %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="stationDetails">
+            <div class="station"><%= train.STOPA %></div>
+            <div class="station"><%= train.STOPB %></div>
+            <div class="station"><%= train.STOPC %></div>
+            <div class="station"><%= train.STOPD %></div>
+            <div class="station"><%= train.STOPE %></div>
+          </div>
+        </div>
+        <% }); %> <% } else { %>
+        <p>No results found for the given train name or number.</p>
+        <% } %>
+      </div>
+    </div>
+    <script>
+      const dummyTrainDetails = JSON.parse(
+        localStorage.getItem("dummyTrainDetails")
+      );
+      console.log(dummyTrainDetails);
+
+      dummyTrainDetails.forEach((element) => {});
+    </script>
+    <footer style="margin-top: 10rem;" id="footer">
+        <div class="footer_left">
+          <img src="/photos/yaatra.jpg" alt="">
+          <div class="footer_info">
+            <p>Book Train Tickets Quickly.</p>
+            <p>Enjoy free Cancellation.</p>
+          </div>
+        </div>
+        <div class="contact_us">
+          <p>Customer Care Number: +123456789</p>
+          <p>24x7 free service</p>
+        </div>
+        <div class="copyright">
+          <p>&copy; Yatra.com</p>
+          <p>All rights reserved by respective owners.</p>
+        </div>
+      </footer>
+  </body>
+</html>

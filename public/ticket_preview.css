@@ -1,0 +1,167 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 10px;
+    overflow-x: hidden;
+    background-color: rgb(237, 91, 38, 0.2);
+}
+
+.trainDetails {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.trainDetails p,
+.passengerDetails p {
+    font-size: 20px;
+}
+
+.ticketContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.trainInfoContainer {
+    width: 70vw;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+.train_info {
+    height: 50%;
+    width: 100%;
+    position: relative;
+    left: -0.5%;
+    top: 5%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 30px;
+    margin-left: 10px;
+    border-radius: 10px 10px 0 0;
+    padding-left: 180px;
+}
+
+.train_info h3 {
+    font-size: 25px;
+}
+
+hr {
+    width: 100%;
+    color: #676363;
+    background-color: #676363;
+    height: 20px;
+}
+
+.from-to {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 50px;
+    margin-left: 90px;
+}
+
+.time-info {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 25px;
+}
+
+.departure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.passengerDetails {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.passengerInfo {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.passengerTable {
+    width: 100%;
+    padding: 10px;
+}
+
+.passengerTable th,
+.passengerTable td {
+    padding: 8px;
+    text-align: left;
+}
+
+.passengerTable th {
+    background-color: #f2f2f2;
+}
+
+.passengerTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.passengerTable tr:hover {
+    background-color: #f5f5f5;
+}
+
+
+.passenger_details {
+    width: 70%;
+    height: auto;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    border: none;
+}
+
+.confirm {
+    width: 200px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #ed5b25;
+    color: #f0f0f0;
+    cursor: pointer;
+}

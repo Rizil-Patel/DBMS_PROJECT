@@ -1,0 +1,45 @@
+<!-- pnr_status_result1.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ... (your existing head content) ... -->
+  </head>
+
+  <body>
+    <nav>
+      <!-- ... (your existing nav content) ... -->
+    </nav>
+
+    <!-- page-1 -->
+    <div id="page1">
+      <div id="option">
+        <!-- ... (your existing option content) ... -->
+      </div>
+
+      <div class="pnrDetails">
+        <% if (results && results.length > 0) { %>
+          <% results.forEach((result) => { %>
+            <div class="pnr_result">
+              <h2>PNR Status Details</h2>
+              <p><strong>PNR:</strong> <%= result.PNR %></p>
+              <p><strong>Train Name:</strong> <%= result.TRAINNAME %></p>
+              <p><strong>Booking Status:</strong> <%= result.BOOKINGSTATUS %></p>
+              <p><strong>Current Status:</strong> <%= result.CURRENTSTATUS %></p>
+              <p><strong>Coach:</strong> <%= result.COACH %></p>
+              <p><strong>Berth:</strong> <%= result.BERTH %></p>
+              <p><strong>Class:</strong> <%= result.CLASS %></p>
+              <!-- Add more details as needed -->
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p>No PNR status details found for the given PNR number.</p>
+        <% } %>
+      </div>
+
+      <footer id="footer">
+        <p>Contact will be here</p>
+      </footer>
+    </div>
+  </body>
+</html>

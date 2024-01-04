@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Form</title>
+    <link rel="stylesheet" href="/add_details.css">
+</head>
+
+<body>
+    <div id="trainDetailsModal" class="modal">
+        <div class="passenger_Details">
+            <button class="add" id="addPassengerBtn">+ Add new passenger</button>
+            <button class="proceed" onclick="moveToNext()">Proceed</button>
+        </div>
+
+        
+        <!-- Container to hold dynamically added forms -->
+        <div id="passengerFormsContainer"></div>
+
+        <form action="/add_details_entry" method="post" class="Details" id="passengerFormTemplate" style="display: none;">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age">
+            <label for="gender">Gender</label>
+            <div class="gender">
+                <div class="male">
+                    <input type="radio" name="gender" value="male" id="male">
+                    <label for="gender">Male</label>
+                </div>
+                <div class="female">
+                    <input type="radio" name="gender" value="female" id="female">
+                    <label for="gender">Female</label>
+                </div>
+                <div class="other">
+                    <input type="radio" name="gender" value="other" id="other">
+                    <label for="gender">Other</label>
+                </div>
+            </div>
+            <label for="nationality" class="nationality" id="nationality">Nationality</label>
+            <input type="text" name="nationality" id="nationality">
+            <hr>
+            <h4>Confirm your choice</h4>
+            <label for="berth">berth</label>
+            <input type="text" name="berth" id="berth">
+            <label for="coach">coach</label>
+            <input type="text" name="coach" id="coach">
+            <label style="margin-left: 4rem;" for="security1">security code</label>
+            <input  type="number" name="security1" id="security1">
+            <span><button type="submit" onclick="submitForm()">Submit</button>
+                <div class="checkmark" id="checkmark">&#10003;</div>
+            </span>
+        </form>
+
+        <script>
+
+            function moveToNext(){
+                window.location.href="ticket_preview.html";
+            }
+
+            function showCheckmark() {
+                document.getElementById('checkmark').style.display = 'inline-block';
+                // You can add additional logic or AJAX call here for form submission
+                return false; // Prevents the form from actually submitting
+            }
+
+            function submitForm() {
+                showCheckmark();
+
+                // Get form data
+                const name = document.getElementById("name").value;
+                const age = document.getElementById("age").value;
+                const nationality = document.getElementById("nationality").value;
+
+                // Get the selected gender
+                let gender;
+                const maleRadio = document.querySelector(".male input[name='gender']:checked");
+                const femaleRadio = document.querySelector(".female input[name='gender']:checked");
+                const otherRadio = document.querySelector(".other input[name='gender']:checked");
+
+                if (maleRadio) {
+                    gender = maleRadio.value;
+                } else if (femaleRadio) {
+                    gender = femaleRadio.value;
+                } else if (otherRadio) {
+                    gender = otherRadio.value;
+                }
+
+                // Create a passenger object
+                const passenger = {
+                    name: name,
+                    age: age,
+                    gender: gender,
+                    nationality: nationality
+                };
+
+                // Retrieve existing passenger details from local storage
+                const existingPassengers = JSON.parse(localStorage.getItem("passengers")) || [];
+
+                // Add the new passenger to the array
+                existingPassengers.push(passenger);
+
+                // Convert the array to JSON string and store in local storage
+                localStorage.setItem("passengers", JSON.stringify(existingPassengers));
+
+                // You can add additional logic or feedback here if needed
+                console.log("Passenger details stored:", existingPassengers);
+            }
+
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const addPassengerBtn = document.getElementById("addPassengerBtn");
+                const passengerFormTemplate = document.getElementById("passengerFormTemplate");
+                const passengerFormsContainer = document.getElementById("passengerFormsContainer");
+
+                addPassengerBtn.addEventListener("click", function () {
+                    // Clone the form template
+                    const newPassengerForm = passengerFormTemplate.cloneNode(true);
+                    newPassengerForm.removeAttribute("id"); // Remove duplicate IDs
+                    newPassengerForm.style.display = ''; // Show the cloned form
+
+                    // Add the new form to the container
+                    passengerFormsContainer.appendChild(newPassengerForm);
+                });
+            });
+        </script>
+    </div>
+    
+</body>
+
+</html>

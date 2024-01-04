@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(237, 91, 38, 0.2);
+        }
+
+        #loginContainer {
+            position: absolute;
+            box-sizing: border-box;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            background: transparent;
+            background-color: rgb(181, 181, 181, 0.3);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .loginbox {
+            height: 90%;
+            width: 60%;
+            display: flex;
+            align-items: center;
+            background-color: rgb(248, 247, 245);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 12px rgba(24, 24, 24, 0.1);
+        }
+
+        .loginbox img {
+            height: 100%;
+            width: 40%;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .loginform {
+            padding: 20px 5px 20px 5px;
+            height: 100%;
+            width: 75%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loginform form {
+            display: flex;
+            justify-content: center;
+            /* align-items: center; */
+            flex-direction: column;
+            width: 60%;
+        }
+
+        .loginform form input {
+            border: none;
+            border-bottom: 1.5px solid black;
+            margin: 10px 0 10px 0;
+            /* border-radius: 5px; */
+            background-color: rgb(248, 247, 245);
+            height: 25px;
+            outline: none;
+            transition: all 1s ease-in none;
+            cursor: text;
+        }
+
+        #name,
+        #email,
+        #number,
+        #password {
+            padding: 0 5px 0 25px;
+        }
+
+        .loginform form label {
+            font-size: 18px;
+            color: #2e2c2b;
+            font-weight: 530;
+            position: relative;
+            top: 14.5%;
+            left: 8%;
+        }
+
+        .loginform form i {
+            position: relative;
+            top: 22.8%;
+            left: 1%;
+        }
+
+
+        .loginform h3 {
+            font-weight: 800;
+            font-size: 40px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        #policy {
+            width: 12px;
+            height: 12px;
+            cursor: pointer;
+        }
+
+        #policy-label {
+            top: -6%;
+            font-size: 13px;
+            margin-left: 5px;
+        }
+
+
+        .loginform button {
+            width: 50%;
+            height: 7%;
+            font-size: 25px;
+            color: rgb(248, 247, 245);
+            border: 2px #ED5B25 solid;
+            border-radius: 10px;
+            background: #ED5B25;
+            transition: all 0.5s ease 0.05s;
+            cursor: pointer;
+        }
+
+        .loginform form input:active {
+            border-color: #ed5b25;
+        }
+
+        .loginform button:hover {
+            background-color: rgb(237, 91, 38, 0.9);
+        }
+
+        .loginform p {
+            display: inline;
+        }
+
+        .loginform a {
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        #showpassword {
+            position: relative;
+            top: -27px;
+            left: 250px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loginContainer">
+        <div class="loginbox">
+            <img src="./photos/Untitled.png" alt="">
+            <div class="loginform">
+                <!-- <span id="close-login">&times;</span> -->
+                <h3>Log in to Yatra.com</h3>
+                <form action="/login1" method="POST" onsubmit="submitLoginForm(event)">
+                    <!-- <i class="fas fa-phone"></i>
+                    <label for="number" class="clickable">Mobile No.</label>
+                    <input type="text" name="number" id="number"> <br> -->
+                    <i style="margin-top: 0.5rem;" class="fas fa-envelope"></i>
+                    <label for="email" class="clickable">E-mail Id</label>
+                    <input type="email" name="email" id="email"><br>
+                    <i class="fas fa-unlock"></i>
+                    <label for="password" class="clickable">Password</label>
+                    <input type="password" name="email" id="password">
+                    <span><i class="fas fa-eye" id="showpassword"></i></span>
+                    <a href="">Forgot password?</a>
+                <button type="submit" style="height: 2rem;">Login</button>
+                </form>
+                <div class="register-option">
+                    <p>Don't have an account? </p>
+                    <a href="/register1" id="register-alt">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // const close_login = document.getElementById("close-login");
+        // close_login.addEventListener("click", () => {
+        //     loginContainer.style.display = "none";
+        // });
+
+        let labels = document.querySelectorAll(".clickable");
+        labels.forEach((label) => {
+            label.addEventListener("click", () => {
+                label.style.top = "2.8%";
+                label.style.left = "2%";
+                label.style.color = "#ED5B25";
+                label.style.fontSize = "16px";
+            });
+        });
+
+        let showPassword = document.getElementById("showpassword")
+        let password = document.getElementById("password")
+        showPassword.addEventListener("click", () => {
+            if (password.type === 'password') {
+                password.type = 'text'
+            }
+            else {
+                password.type = 'password'
+            }
+        })
+    </script>
+</body>
+
+</html>

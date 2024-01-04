@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Train | Yaatra.com</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/footer.css" />
+
+    <style>
+      form{
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+      }
+
+
+    </style>
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav>
+      <div class="left">
+        <img
+          src="/photos/yaatra.jpg"
+          alt=""
+          width="90px"
+          height="80px"
+          class="logo"
+        />
+      </div>
+      <div class="middle">
+        <a href="#page1">Home</a>
+        <a href="">About us</a>
+        <a href="#footer">Contact</a>
+      </div>
+      <div class="right">
+        <div class="dropdown">
+          <i class="fas fa-user-circle" id="profileicon"></i>
+          <div class="dropdown_content">
+            <span class="profile">Profile</span>
+            <a href="/login1" class="login">Login</a>
+            <a href="/register1" class="register">Register</a>
+            <span class="paymenthistory">Payment History</span>
+            <span class="logout">Log Out</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- page-1 -->
+    <div id="page1">
+      <div id="option">
+        <a
+          href="/book_train_result1"
+          class="opt_1"
+          style="
+            background-color: #e9f0f0;
+            width: 133px;
+            padding: 5px;
+            border-radius: 10px 10px 0 0;
+            color: #ed5b25;
+          "
+          >Book Trains</a
+        >
+        <a href="/new_pnr_status" class="opt_2">Check PNR Status</a>
+        <a href="/run_status1" class="opt_3">Running Status</a>
+        <a href="/train_details1" class="opt_4">Search Train</a>
+      </div>
+
+      <div class="booking">
+        <form action="/book_train_result1" method="post">
+          <div class="journey">
+            <div class="from" style="margin-right: 6rem; left: 2rem;">
+              <label for="from"> From</label> <br /><br />
+              <input
+                type="text"
+                name="from"
+                id="from"
+                placeholder="Leaving from"
+              />
+            </div>
+            <div class="arrow" style="margin-right: 6rem;">
+              <img
+                src="./photos/exchange.png"
+                alt=""
+                id="exchange"
+                onclick="exchangeValue()"
+              />
+            </div>
+            <div class="to" style="margin-right: 6rem;">
+              <label for="to">To</label> <br /><br />
+              <input type="text" name="to" id="to" placeholder="Going to" />
+            </div>
+            <div class="date" style="margin-right: 6rem;">
+              <label for="date">Journey date:</label> <br /><br />
+              <input type="date" name="date" id="date" />
+            </div>
+            <button class="search_train">Search Trains</button>
+          </div>
+        </form>
+        <div class="opt">
+          <div class="check">
+            <input type="checkbox" id="free-cancel" />
+            <p class="free-cancel-text">Opt for free cancellation</p>
+          </div>
+          <div class="details">
+            <p>Rs.0 cancellation fee</p>
+            <span>|</span>
+            <p>Instant refunds</p>
+            <span>|</span>
+            <p>No documentation required.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer">
+      <div class="footer_left">
+        <img src="/photos/yaatra.jpg" alt="">
+        <div class="footer_info">
+          <p>Book Train Tickets Quickly.</p>
+          <p>Enjoy free Cancellation.</p>
+        </div>
+      </div>
+      <div class="contact_us">
+        <p>Customer Care Number: +123456789</p>
+        <p>24x7 free service</p>
+      </div>
+      <div class="copyright">
+        <p>&copy; Yatra.com</p>
+        <p>All rights reserved by respective owners.</p>
+      </div>
+    </footer>
+
+    <script>
+      const home = document.querySelector(".logo");
+      home.addEventListener("click", () => {
+        window.location.href = "/index1.ejs";
+      });
+
+      const dummyTrainDetailsArray = [
+        {
+          trainName: "Express 123",
+          departure: "CityA",
+          arrival: "CityB",
+          arrival_time: "2:00",
+          departure_time: "6:00",
+          duration: "4 hours",
+          classes: [
+            {
+              className: "1A",
+              totalSeats: 50,
+              fare: 100.0,
+            },
+            {
+              className: "2A",
+              totalSeats: 50,
+              fare: 100.0,
+            },
+            {
+              className: "3A",
+              totalSeats: 100,
+              fare: 50.0,
+            },
+            {
+              className: "SL",
+              totalSeats: 100,
+              fare: 50.0,
+            },
+          ],
+        },
+        {
+          trainName: "SuperFast 456",
+          departure: "CityC",
+          arrival: "CityD",
+          arrival_time: "3:00",
+          departure_time: "6:00",
+          duration: "3 hours",
+          classes: [
+            {
+              className: "2A",
+              totalSeats: 50,
+              fare: 100.0,
+            },
+            {
+              className: "3A",
+              totalSeats: 100,
+              fare: 50.0,
+            },
+            {
+              className: "SL",
+              totalSeats: 100,
+              fare: 50.0,
+            },
+            {
+              className: "CC",
+              totalSeats: 50,
+              fare: 100.0,
+            },
+          ],
+        },
+        {
+          trainName: "SuperFast 789",
+          departure: "CityE",
+          arrival: "CityF",
+          arrival_time: "2:30",
+          departure_time: "4:30",
+          duration: "2 hours",
+          classes: [
+            {
+              className: "2A",
+              totalSeats: 50,
+              fare: 100.0,
+            },
+            {
+              className: "3A",
+              totalSeats: 100,
+              fare: 50.0,
+            },
+            {
+              className: "SL",
+              totalSeats: 100,
+              fare: 50.0,
+            },
+            {
+              className: "CC",
+              totalSeats: 50,
+              fare: 100.0,
+            },
+          ],
+        },
+        {
+          trainName: "SuperFast 456",
+          departure: "CityC",
+          arrival: "CityD",
+          arrival_time: "3:00",
+          departure_time: "6:00",
+          duration: "3 hours",
+          classes: [
+            {
+              className: "3A",
+              totalSeats: 100,
+              fare: 50.0,
+            },
+            {
+              className: "SL",
+              totalSeats: 100,
+              fare: 50.0,
+            },
+            {
+              className: "CC",
+              totalSeats: 50,
+              fare: 100.0,
+            },
+          ],
+        },
+      ];
+
+      // Event listener for the "Search Trains" button
+      const showTrainDetails = document.querySelector(".search_train");
+      showTrainDetails.addEventListener("click", function () {
+        let from = document.getElementById("from").value;
+        let to = document.getElementById("to").value;
+        let date = document.getElementById("date").value;
+        // Store the train details in localStorage
+        localStorage.setItem(
+          "dummyTrainDetailsArray",
+          JSON.stringify(dummyTrainDetailsArray)
+        );
+        localStorage.setItem("from", from);
+        localStorage.setItem("to", to);
+        localStorage.setItem("date", date);
+        // Redirect to the result page
+        window.location.href = "/book_train_result1";
+      });
+
+      function exchangeValue() {
+        let from = document.getElementById("from").value;
+        let to = document.getElementById("to").value;
+
+        document.getElementById("from").value = to;
+        document.getElementById("to").value = from;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Train | Yaatra.com</title>
+</head>
+
+<body>
+
+    <div class="result-container">
+        <% if (trainResults) { %>
+            <h2>Train Details</h2>
+            <ul>
+                <% trainResults.forEach(train => { %>
+                    <li>
+                        <strong>Train Name:</strong> <%= train.TRAINNAME %><br>
+                        <strong>Departure:</strong> <%= train.DEPARTURE %><br>
+                        <strong>Arrival:</strong> <%= train.ARRIVAL %><br>
+                        <strong>Departure Time:</strong> <%= train.DEPARTURE_TIME %><br>
+                        <strong>Arrival Time:</strong> <%= train.ARRIVAL_TIME %><br>
+                        <strong>DURATION:</strong> <%= train.DURATION %><br>
+                        <strong>STOPA:</strong> <%= train.STOPA %><br>
+                        <strong>STOPB:</strong> <%= train.STOPB %><br>
+                        <strong>STOPC:</strong> <%= train.STOPC %><br>
+                        <!-- Add more details as needed -->
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No results found for the given train name or number.</p>
+        <% } %>
+    </div>
+    <script>
+        const dummyTrainDetails = JSON.parse(localStorage.getItem('dummyTrainDetails'))
+        console.log(dummyTrainDetails);
+
+        dummyTrainDetails.forEach(element => {
+            
+        });
+    </script>
+</body>
+
+</html>

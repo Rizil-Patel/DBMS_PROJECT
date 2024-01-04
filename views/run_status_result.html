@@ -1,0 +1,136 @@
+<!-- run_status_result1.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Running Status Result | Yaatra.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/style.css"/>
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        nav .logo {
+            margin-right: auto;
+        }
+
+        #page1 {
+            padding: 20px;
+        }
+
+        .train-details {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .train-details h2 {
+            color: #333;
+        }
+
+        .train-details p {
+            color: #555;
+        }
+
+        #footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="left">
+        <img src="./photos/main logo.jpeg" alt="" width="90px" height="80px" class="logo"/>
+    </div>
+    <div class="middle">
+        <a href="#page1">Home</a>
+        <a href="">About us</a>
+        <a href="#footer">Contact</a>
+    </div>
+    <div class="right">
+        <div class="dropdown">
+            <i class="fas fa-user-circle" id="profileicon"></i>
+            <div class="dropdown_content">
+                <span class="profile">Profile</span>
+                <a href="/login1" class="login">Login</a>
+                <a href="/register1" class="register">Register</a>
+                <span class="paymenthistory">Payment History</span>
+                <span class="logout">Log Out</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div id="page1">
+    <div class="train-details">
+        <% if (results && results.length > 0) { %>
+        <h2>Train Details</h2>
+        <p><strong>Train Number:</strong> <%= results[0].TRAINNUMBER %></p>
+        <p><strong>Departure Station:</strong> <%= results[0].DEPARTURESTATION %></p>
+        <p><strong>Arrival Station:</strong> <%= results[0].ARRIVALSTATION %></p>
+        <p><strong>Departure Time:</strong> <%= results[0].DEPARTURETIME %></p>
+        <p><strong>Arrival Time:</strong> <%= results[0].ARRIVALTIME %></p>
+        <p><strong>Status:</strong> <%= results[0].STATUS %></p>
+        <% } else { %>
+        <p>No details found for the provided train number.</p>
+        <% } %>
+    </div>
+</div>
+
+<footer id="footer">
+    <div class="footer_left">
+      <img src="/photos/yaatra.jpg" alt="">
+      <div class="footer_info">
+        <p>Book Train Tickets Quickly.</p>
+        <p>Enjoy free Cancellation.</p>
+      </div>
+    </div>
+    <div class="contact_us">
+      <p>Customer Care Number: +123456789</p>
+      <p>24x7 free service</p>
+    </div>
+    <div class="copyright">
+      <p>&copy; Yatra.com</p>
+      <p>All rights reserved by respective owners.</p>
+    </div>
+  </footer>
+
+<script>
+    const home = document.querySelector(".logo");
+    home.addEventListener("click", () => {
+        window.location.href = "/index1";
+    });
+</script>
+</body>
+</html>

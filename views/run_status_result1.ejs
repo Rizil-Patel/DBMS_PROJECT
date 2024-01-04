@@ -1,0 +1,269 @@
+<!-- run_status_result1.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Running Status Result | Yaatra.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/footer.css" />
+    
+   <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: rgb(237, 91, 38, 0.2);
+        }
+
+
+        .Modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: auto;
+            width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .num_input {
+            width: 100%;
+            height: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #9B2447;
+            margin-bottom: 60px;
+        }
+
+        .num_input h3 {
+            color: #e9f0f0;
+            font-size: 30px;
+            font-family: 'Times New Roman', Times, serif;
+            margin-bottom: 30px;
+        }
+
+        .Form {
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .Form input {
+            width: 65%;
+            height: 40px;
+            padding: 5px;
+            outline: none;
+        }
+
+        .Form button {
+            box-sizing: border-box;
+            width: 30%;
+            height: 39px;
+            border: 1px solid #ED5B25;
+            background-color: #ED5B25;
+            color: #e9f0f0;
+            font-size: 20px;
+        }
+
+        .reference_link {
+            width: 40%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 10px;
+        }
+
+        .reference_link a {
+            text-decoration: none;
+            color: #2e2c2b;
+            border: 1px solid #ed5b25;
+            padding: 10px;
+            background-color: #feebe6;
+            border-radius: 5px;
+            font-size: 17px;
+        }
+
+        .trainDetails {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .trainDetails p,
+        .passengerDetails p {
+            font-size: 20px;
+        }
+
+        .ticketContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .trainInfoContainer {
+            padding: 2rem;
+            width: 70vw;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+        }
+
+        .train_info {
+            height: 60%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            margin-left: 10px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .train_info h3 {
+            font-size: 25px;
+        }
+
+        hr {
+            position: relative;
+            right: 0.6%;
+            width: 60vw;
+            color: #676363;
+            background-color: #676363;
+            height: 20px;
+        }
+
+        .from-to {
+            height: 100%;
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            gap: 50px;
+            /* margin-left: 100px; */
+        }
+
+        .liveStatus {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 150px;
+        }
+    </style>
+</head>
+<body>
+<!-- <nav>
+    <div class="left">
+        <img src="./photos/main logo.jpeg" alt="" width="90px" height="80px" class="logo"/>
+    </div>
+    <div class="middle">
+        <a href="#page1">Home</a>
+        <a href="">About us</a>
+        <a href="#footer">Contact</a>
+    </div>
+    <div class="right">
+        <div class="dropdown">
+            <i class="fas fa-user-circle" id="profileicon"></i>
+            <div class="dropdown_content">
+                <span class="profile">Profile</span>
+                <a href="/login1" class="login">Login</a>
+                <a href="/register1" class="register">Register</a>
+                <span class="paymenthistory">Payment History</span>
+                <span class="logout">Log Out</span>
+            </div>
+        </div>
+    </div>
+</nav> -->
+
+<div class="Modal">
+    <div class="num_input">
+        <h3>Live running status</h3>
+        <div class="Form">
+            <input type="number" placeholder="Train Number" id="TrainNo">
+            <button>Find Live Status</button>
+        </div>
+        <div class="reference_link">
+            <a href="/book_train1">Train Booking</a>
+            <a href="new_pnr_status.ejs">Train Running Status</a>
+        </div>
+    </div>
+    <div class="ticketContainer">
+        <div class="trainDetails">
+            <p>Live Train Details</p>
+            <strong>Train Number</strong>
+            <h4> <%= results[0].TRAINNUMBER %></h4>
+
+            <div class="trainInfoContainer">
+                <div class="train_info">
+                    <h3> <%= results[0].TRAINNAME %></h3>
+                    <h4> <%= results[0].STATUS %></h4>
+                    <div class="from-to">
+                        <p style="margin-left: -4rem;"><strong>Departure:</strong> <%= results[0].DEPARTURESTATION %><p>
+                        <p><strong>Arrival:</strong>  <%= results[0].ARRIVALSTATION %></p>
+                    </div>
+                    <hr>
+                </div>
+                <div class="liveStatus">
+                    <div class="lastStation">
+                        <p><strong>Last Station:</strong> Station G</p>
+                        <p><strong>Departure Time:</strong><%= results[0].DEPARTURETIME %></p>
+                    </div>
+                    <div class="nextStation">
+                        <p><strong>Next Station:</strong> Station H</p>
+                        <p><strong>Arrival Time:</strong> <%= results[0].ARRIVALTIME %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="footer">
+    <div class="footer_left">
+      <img src="/photos/yaatra.jpg" alt="">
+      <div class="footer_info">
+        <p>Book Train Tickets Quickly.</p>
+        <p>Enjoy free Cancellation.</p>
+      </div>
+    </div>
+    <div class="contact_us">
+      <p>Customer Care Number: +123456789</p>
+      <p>24x7 free service</p>
+    </div>
+    <div class="copyright">
+      <p>&copy; Yatra.com</p>
+      <p>All rights reserved by respective owners.</p>
+    </div>
+  </footer>
+
+<script>
+    const home = document.querySelector(".logo");
+    home.addEventListener("click", () => {
+        window.location.href = "/index1";
+    });
+</script>
+</body>
+</html>

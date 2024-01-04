@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Print | Yatra.com</title>
+    <link rel="stylesheet" href="/ticket.css">
+</head>
+
+<body>
+    <div class="ticketContainer1">
+        <div class="titlebar1">
+            <img src="/photos/yaatra.jpg" alt="">
+            <p>Train Ticket</p>
+        </div>
+        <div class="ticket_details1">
+            <div class="left1">
+                <div class="name1">
+                    <p>Name: </p>
+                    <p><%= passengerDetails.name %></p>
+                </div>
+                <div class="from1">
+                    <p>From: </p>
+                    <p><%= passengerDetails.from %></p>
+                </div>
+                <div class="to1">
+                    <p>To: </p>
+                    <p><%= passengerDetails.to %></p>
+                </div>
+                <div class="date1">
+                    <p>Date: </p>
+                    <p><%= passengerDetails.date %></p>
+                </div>
+            </div>
+            <div class="right1">
+                <div class="train_no1">
+                    <p>Train: </p>
+                    <p><%= trainDetails.train %></p>
+                </div>
+                <div class="platform1">
+                    <p>Platform: </p>
+                    <p><%= trainDetails.platform %></p>
+                </div>
+                <div class="seat1">
+                    <p>Seat: </p>
+                    <p><%= trainDetails.seat %></p>
+                </div>
+                <div class="dept_arr1">
+                    <div class="dept1">
+                        <p>Departure: </p>
+                        <p><%= trainDetails.departure %></p>
+                    </div>
+                    <div class="arr1">
+                        <p>Arrival: </p>
+                        <p><%= trainDetails.arrival %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Train | Yaatra.com</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/footer.css" />
+
+
+    <style>
+        .train {
+            width: 90vw;
+            height: auto;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 10px;
+            border: 2px solid #f0f0f0;
+        }
+
+        .train_dts {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            /* background-color: #f0f0f0; */
+        }
+
+        .train_info {
+            width: 50%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .from-to {
+            height: 100%;
+            width: 70%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .time-info {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .class_dts {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .class_box {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 50px;
+            padding-left: 20px;
+        }
+
+        .class_details {
+            height: 60px;
+            width: 110px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgb(237, 91, 38, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgb(237, 91, 38, 0.2)
+        }
+
+        .class_details:hover{
+            cursor: pointer;
+        }
+        hr {
+            width: 100%;
+            margin: 10px;
+        }
+
+        form{
+            display: flex;
+            margin-left: -4rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Your existing modal and form code here -->
+    <div class="arrival_departure" id="arrival_departure">
+        <form action="/book_train_result1" method="post">
+        <div style="margin-right: 4rem;" class="from_modal">
+            <label for="from"> From</label> <br><br>
+            <input type="text" name="from" id="from" placeholder="Leaving from">
+        </div>
+        <div style="margin-right: 4rem;" class="arrow_modal">
+            <img src="./photos/exchange.png" alt="" id="exchange" onclick="exchangeValue()">
+        </div>
+        <div style="margin-right: 4rem;" class="to_modal">
+            <label for="to">To</label> <br><br>
+            <input type="text" name="to" id="to" placeholder="Going to">
+        </div>
+        <div style="margin-right: 8rem;" class="date_modal">
+            <label for="date">Journey date:</label> <br><br>
+            <input type="date" name="date" id="date">
+        </div>
+        <button class="search_train_modal">Search Trains</button>
+        </form>
+    </div>
+
+    <div class="modal-content" id="trainDetailsModalContent">
+        <!-- Loop through each train result -->
+        <% for (let i = 0; i < trainResults.length; i++) { %>
+            <div class="train">
+                <div class="train_dts">
+                    <div class="train_info">
+                        <h3><%= trainResults[i].TRAINNAME %></h3>
+                        <div class="from-to">
+                            <p><strong>Departure:</strong> <%= trainResults[i].SOURCESTATION %></p>
+                            <p><strong>Arrival:</strong> <%= trainResults[i].DESTINATIONSTATION %></p>
+                        </div>
+                    </div>
+                    <div class="time-info">
+                        <p style="font-size: 30px"> <%= trainResults[i].STARTTIME %></p>
+                        <span>------</span>
+                        <p>Duration: <%= trainResults[i].DURATION %> mins</p>
+                        <span>------</span>
+                        <p style="font-size: 30px"> <%= trainResults[i].ENDTIME %></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="class_dts">
+                    <div class="class_box">
+                        <!-- Loop through each class of the current train -->
+                        <% const trainClasses = ['A1', 'A2', 'A3', 'SL']; %>
+                        <% for (let j = 0; j < trainClasses.length; j++) { %>
+                            <% const className = trainClasses[j]; %>
+                            <div onclick="window.location.href='/add_details_entry';" class="class_details">
+                                <p style="padding: 5px">
+                                    <span style="padding: 5px; font-weight: 700"><%= className %></span>
+                                    <span>&#8377</span>
+                                    <span><%= trainResults[i][`${className}PRICE`] %></span>
+                                </p>
+                                <p style="padding: 5px">AVL: <%= trainResults[i][`${className}AVAL`] %></p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    <footer  style="margin-top: 10rem;" id="footer">
+        <div class="footer_left">
+          <img src="/photos/yaatra.jpg" alt="">
+          <div class="footer_info">
+            <p>Book Train Tickets Quickly.</p>
+            <p>Enjoy free Cancellation.</p>
+          </div>
+        </div>
+        <div class="contact_us">
+          <p>Customer Care Number: +123456789</p>
+          <p>24x7 free service</p>
+        </div>
+        <div class="copyright">
+          <p>&copy; Yatra.com</p>
+          <p>All rights reserved by respective owners.</p>
+        </div>
+      </footer>
+    <!-- Your existing script code here -->
+</body>
+
+</html>
